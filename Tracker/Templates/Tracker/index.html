@@ -6,6 +6,16 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Hi </h1>
+     <h1>Expense Tracker</h1>
+
+    <nav>
+        <a href="{% url 'dashboard' %}">Dashboard</a> |
+        <a href="{% url 'add' %}">Add Transaction</a> |
+        <a href="{% url 'transactionlist' %}">Transactions</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
 </body>
 </html>

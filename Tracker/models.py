@@ -19,7 +19,7 @@ class Category(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} ({self.category})"
+        return f"{self.name}"
     
 
 class Transaction(models.Model):
@@ -30,9 +30,9 @@ class Transaction(models.Model):
 
     amount=models.DecimalField(max_digits=10,decimal_places=5)
 
-    date=models.DateTimeField()
+    date=models.DateTimeField(auto_now_add=True)
 
     description=models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.user.username}-{self.amount}-{self.transaction}"
+        return f"{self.user.username}-{self.amount}-{self.category}"
