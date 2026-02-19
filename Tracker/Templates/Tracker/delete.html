@@ -1,0 +1,9 @@
+<h2>Are you sure you want to delete this transaction?</h2>
+
+<p>{{ pkey.name }} - {{ pkey.amount }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirm Delete</button>
+    <a href="{% url 'transactionlist' %}">Cancel</a>
+</form>

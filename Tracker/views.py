@@ -1,65 +1,71 @@
 from django.shortcuts import render,redirect
-from .models import Transaction,Category
+from .models import Transaction
 from .forms import TransactionForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+
 
 # Create your views here.
 
 def add(request):
+    form = TransactionForm()
 
     if request.method == 'POST':
-        form = TransactionForm(request.POST)
+        form = TransactionForm(request.POST,request.FILES)
 
         if form.is_valid():
-           form.save(user=request.user)
+           form.save()
            ''' transaction = form.save(commit=False)
             transaction.user = User.objects.first()  # for testing
             transaction.save()'''
            return redirect('transactionlist')
 
-    else:
-        form = TransactionForm()
+    context={ 'form': form}
 
-    return render(request, 'Tracker/add.html', {'form': form})
+    return render(request, 'Tracker/add.html',context)
 
-'''@login_required
-def add(request):
+def update(request,pk):
+    pkey=Transaction.objects.get(pk=pk)
+    form=TransactionForm(instance=pkey)
 
     if request.method=='POST':
-        form=TransactionForm(request.POST)#,user=request.user)
+        form=TransactionForm(request.POST,request.FILES,instance=pkey)
 
         if form.is_valid():
-            transaction=form.save(commit=False)
-            transaction.user=User.objects.first()#request.user
-            transaction.save()
-            return redirect('transaction_list')
+            form.save()
+            return redirect('transactionlist')
 
-        #else:
-            
-            form=TransactionForm(user=request.user)
-        form = TransactionForm()
-        context={'form':form}    
+    context={ 'form': form}
 
-        return render(request,'Tracker/add.html',context)  '''
+    return render(request, 'Tracker/add.html',context)
+
+def delete(request,pk):
+    pkey=Transaction.objects.get(pk=pk)
+
+    if request.method=='POST':
+        pkey.delete()
+        return redirect('transactionlist')
+
+    context={ 'pkey': pkey}
+
+    return render(request, 'Tracker/delete.html',context)    
+
       
 
 def transaction_list(request):
-    transactions=Transaction.objects.filter(user=request.user).order_by('-date')
+    transactions=Transaction.objects.all().order_by('-date')
 
     context={'transactions':transactions}
 
     return render(request,'Tracker/show.html',context)
 
 
-@login_required
+
 def dashboard(request):
-    transaction=Transaction.objects.filter(user=request.user)
+    transaction=Transaction.objects.all()
     total_income=0
     total_expense=0
 
     for t in transaction:
-        if t.category.category=='income':
+        if t.category=='income':
             total_income+=t.amount
         else:
             total_expense+=t.amount

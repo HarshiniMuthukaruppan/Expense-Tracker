@@ -9,22 +9,28 @@
         <th>Amount</th>
         <th>Date</th>
         <th>Description</th>
+        <th>edit</th>
+        <th>delete</th>
     </tr>
 
     {% for transaction in transactions %}
     <tr>
-        <td>{{ transaction.category.name }}</td>
-        <td>{{ transaction.category.category }}</td>
+        <td>{{ transaction.name }}</td>
+        <td>{{ transaction.category }}</td>
         <td>{{ transaction.amount }}</td>
         <td>{{ transaction.date }}</td>
         <td>{{ transaction.description }}</td>
+        <td><a href="{% url 'edit' transaction.id %}">edit</a></td>
+        <td><a href="{% url 'delete' transaction.id %}">delete</a></td>    
     </tr>
     {% empty %}
     <tr>
         <td colspan="5">No transactions found.</td>
     </tr>
+    
     {% endfor %}
 
 </table>
+
 
 {% endblock %}
