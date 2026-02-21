@@ -7,6 +7,10 @@ class TransactionForm(forms.ModelForm):
         model=Transaction
         fields=['name','category','amount','description']
 
+
+
+
+
        
 
 

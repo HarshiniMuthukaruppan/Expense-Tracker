@@ -2,35 +2,26 @@
 {% block content %}
 <h2>Transaction List</h2>
 
-<table border="1" cellpadding="5">
-    <tr>
-        <th>Category</th>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Date</th>
-        <th>Description</th>
-        <th>edit</th>
-        <th>delete</th>
-    </tr>
+
+    
 
     {% for transaction in transactions %}
-    <tr>
-        <td>{{ transaction.name }}</td>
-        <td>{{ transaction.category }}</td>
-        <td>{{ transaction.amount }}</td>
-        <td>{{ transaction.date }}</td>
-        <td>{{ transaction.description }}</td>
-        <td><a href="{% url 'edit' transaction.id %}">edit</a></td>
-        <td><a href="{% url 'delete' transaction.id %}">delete</a></td>    
-    </tr>
+
+        <li>{{ transaction.name }}</li>
+        <li>{{ transaction.category }}</li>
+        <li>{{ transaction.amount }}</li>
+        <li>{{ transaction.date }}</li>
+        <li>{{ transaction.description }}</li>
+        <li><a href="{% url 'edit' transaction.id %}">edit</a></li>
+        <li><a href="{% url 'delete' transaction.id %}">delete</a></li>    
+    
     {% empty %}
-    <tr>
-        <td colspan="5">No transactions found.</td>
-    </tr>
+ 
+        <li colspan="5">No transactions found.</li>
+  
     
     {% endfor %}
 
-</table>
 
 
 {% endblock %}
