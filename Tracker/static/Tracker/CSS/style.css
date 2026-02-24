@@ -1,0 +1,98 @@
+/* General body styling */
+body {
+    padding-top: 80px; /* space for fixed navbar */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Navbar styling */
+
+.navbar {
+    z-index: 1055;
+}
+.navbar .nav-link {
+    transition: color 0.3s;
+}
+.navbar .nav-link:hover {
+    color: #0d6efd;
+}
+
+/* Container cards for content */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Forms styling */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+form input.form-control {
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+form button {
+    border-radius: 6px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: background-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 6px;
+}
+
+/* Lists in dashboard/show pages */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Card for dashboard stats */
+.dashboard-card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+.dashboard-card h4 {
+    margin-bottom: 10px;
+    color: #0d6efd;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px 0;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: #0d6efd;
+}
